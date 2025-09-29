@@ -29,6 +29,9 @@ class TarefaListCreateAPIView(APIView):
     
 class TarefaDetailAPIView(APIView):
 
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, pk):
         tarefa, error = TarefaService.get_pk_tarefa_by_user(pk, request.user)
         if error:
