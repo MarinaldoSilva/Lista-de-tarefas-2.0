@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Tarefa(models.Model):
 
@@ -10,7 +11,7 @@ class Tarefa(models.Model):
     """
         A classe Prioridade cria automaticamente, a propriedade chamada 'choices', essa propriedade cria a lista de tuplas [(1, 'Baixa'), (2, 'Média'), (3, 'Alta')] que o IntegerField precisa.
     """
-
+    dono = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='tarefa')
     descricao = models.TextField()
     concluido = models.BooleanField(default=False)
     data_criacao = models.DateTimeField(auto_now_add=True)
